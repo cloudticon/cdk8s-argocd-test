@@ -4,7 +4,7 @@ git clone https://$GH_TOKEN@github.com/cloudticon/gitops ./gitops
 cd gitops
 mkdir -p production
 cp ../k8s/dist/* ./production
-git add .
+git add -u .
 git commit -m "gitops-$(date +%s )"
 git push --set-upstream origin master
 cd ../
