@@ -1,0 +1,5 @@
+
+│ ode EACCES\nnpm ERR! syscall mkdir\nnpm ERR! path /.npm\nnpm ERR! errno -13\nnpm ERR! \nnpm ERR! Your cache folder contains root-owned files, due to a bug in\nnpm ERR! previous versions of npm which ha │
+│ s since been addressed.\nnpm ERR! \nnpm ERR! To permanently fix this problem, please run:\nnpm ERR!   sudo chown -R 999:0 \"/.npm\"\n\nnpm ERR! Log files were not written due to an error writing to the │
+│  directory: /.npm/_logs\nnpm ERR! You can rerun the command with `--loglevel=verbose` to see the logs in your terminal" grpc.code=Unknown grpc.method=GenerateManifest grpc.service=plugin.ConfigManageme │
+│ ntPluginService grpc.start_time="2023-08-18T08:37:19Z" grpc.time_ms=618.253 span.kind=server system=grpc
