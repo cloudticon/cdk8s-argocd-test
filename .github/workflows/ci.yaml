@@ -53,14 +53,23 @@ jobs:
 
       - run: touch k8s/dist/krs
 
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          branch: master
-          repository: cloudticon/gitops
-          directory: "k8s/dist"
-          empty: true
-          github_token: ${{ secrets.GH_TOKEN }}
+      - run: |
+          git remote remove origin
+          git remote add origin https://$GH_TOKEN@github.com/cloudticon/gitops
+          git add .
+          git commit -m "test"
+          git push
+        working-directory: k8s/dist
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+#      - name: Commit & Push changes
+#        uses: actions-js/push@master
+#        with:
+#          branch: master
+#          repository: cloudticon/gitops
+#          directory: "k8s/dist"
+#          empty: true
+#          github_token: ${{ secrets.GH_TOKEN }}
 #
 
 #    - uses: EndBug/add-and-commit@v9
