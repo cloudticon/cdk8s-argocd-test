@@ -7,6 +7,9 @@ export class MyChart extends Chart {
   constructor(scope: Construct, id: string, props: ChartProps = { }) {
     super(scope, id, props);
     const deployment =new Deployment(this, 'api', {
+      securityContext: {
+        ensureNonRoot: false,
+      },
       containers: [
         {
           name: "api",
