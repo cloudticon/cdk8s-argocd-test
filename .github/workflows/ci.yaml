@@ -11,11 +11,15 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-#      - uses: actions/checkout@v3
-#      -
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: '16'
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: 'gitops'
+          path: "k8s/dist"
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 #      -
 #        name: Set up QEMU
 #        uses: docker/setup-qemu-action@v2
@@ -38,25 +42,26 @@ jobs:
 #
 #
 #
-#      - name: Install node packages
-#        run: npm ci
-#        working-directory: k8s
-#
-#      - run: npm run compile
-#        working-directory: k8s
-#      - run: npm run synth
-#        working-directory: k8s
-#
-#      - uses: EndBug/add-and-commit@v9
-#        with:
-#          add: 'k8s'
-#          push: true
+      - name: Install node packages
+        run: npm ci
+        working-directory: k8s
 
-      - name: Invoke deployment hook
-        uses: distributhor/workflow-webhook@v3
-        env:
-          webhook_url: https://argo.devticon.cloudticon.com/api/webhook
-          json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
+      - run: npm run compile
+        working-directory: k8s
+      - run: npm run synth
+        working-directory: k8s
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: 'k8s'
+          push: true
+          cwd: 'k8s/dist'
+
+#      - name: Invoke deployment hook
+#        uses: distributhor/workflow-webhook@v3
+#        env:
+#          webhook_url: https://argo.devticon.cloudticon.com/api/webhook
+#          json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
 #
 #      - name: Sync ArgoCD Application
 #        uses: omegion/argocd-actions@master
