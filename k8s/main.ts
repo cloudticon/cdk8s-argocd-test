@@ -35,6 +35,7 @@ export class MyChart extends Chart {
       }
     });
 
+    console.log("asd")
     new KubeDeployment(this, 'deployment2', {
       spec: {
         replicas: 2,
