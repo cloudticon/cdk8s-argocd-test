@@ -51,37 +51,6 @@ jobs:
       - run: npm run synth
         working-directory: k8s
 
-      - run: touch k8s/dist/krs
-
       - run: ./git-push.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-#      - name: Commit & Push changes
-#        uses: actions-js/push@master
-#        with:
-#          branch: master
-#          repository: cloudticon/gitops
-#          directory: "k8s/dist"
-#          empty: true
-#          github_token: ${{ secrets.GH_TOKEN }}
-#
-
-#    - uses: EndBug/add-and-commit@v9
-#        with:
-#          add: '.'
-#          push: true
-#          cwd: 'k8s/dist'
-
-#      - name: Invoke deployment hook
-#        uses: distributhor/workflow-webhook@v3
-#        env:
-#          webhook_url: https://argo.devticon.cloudticon.com/api/webhook
-#          json: '{ "repository": "${{github.event.repository.full_name}}", "number": "${{github.event.number}}", "created_at": "${{github.event.pull_request.created_at}}", "updated_at": "${{github.event.pull_request.updated_at}}" }'
-#
-#      - name: Sync ArgoCD Application
-#        uses: omegion/argocd-actions@master
-#        with:
-#          address: "argo.devticon.cloudticon.com"
-#          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJrcnM6YXBpS2V5IiwibmJmIjoxNjkyMzU5MjYxLCJpYXQiOjE2OTIzNTkyNjEsImp0aSI6InRlc3QifQ.S8VcMGUSOX4X-9YgUa9r3OBHD9WYgJsWhOHp5ZYNnaE
-#          action: sync
-#          appName: "cdk8s-argocd-test"
