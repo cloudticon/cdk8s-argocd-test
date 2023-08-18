@@ -6,6 +6,7 @@ mkdir -p production
 rm  ./production/*
 cp ../k8s/dist/* ./production
 git add -u .
+ls -la
 git commit -m "gitops-$(date +%s )"
 git push --set-upstream origin master
 cd ../
