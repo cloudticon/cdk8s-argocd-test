@@ -54,6 +54,7 @@ jobs:
       - run: touch k8s/dist/krs
 
       - run: |
+          ls -la
           git config --global user.email "you@example.com"
           git config --global user.name "Your Name"
           git remote remove origin
