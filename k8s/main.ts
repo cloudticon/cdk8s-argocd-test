@@ -27,7 +27,7 @@ export class MyChart extends Chart {
             containers: [
               {
                 name: 'hello-kubernetes',
-                image: 'paulbouwer/hello-kubernetes:1.7',
+                image: process.env.IMAGE,
                 ports: [ { containerPort: 8080 } ]
               }
             ]
@@ -35,50 +35,6 @@ export class MyChart extends Chart {
         }
       }
     });
-
-    console.log("asd")
-    new KubeDeployment(this, 'deployment2', {
-      spec: {
-        replicas: 2,
-        selector: {
-          matchLabels: label
-        },
-        template: {
-          metadata: { labels: label },
-          spec: {
-            containers: [
-              {
-                name: 'hello-kubernetes',
-                image: 'paulbouwer/hello-kubernetes:1.7',
-                ports: [ { containerPort: 8080 } ]
-              }
-            ]
-          }
-        }
-      }
-    });
-
-    new KubeDeployment(this, 'deployment3', {
-      spec: {
-        replicas: 2,
-        selector: {
-          matchLabels: label
-        },
-        template: {
-          metadata: { labels: label },
-          spec: {
-            containers: [
-              {
-                name: 'hello-kubernetes',
-                image: 'paulbouwer/hello-kubernetes:1.7',
-                ports: [ { containerPort: 8080 } ]
-              }
-            ]
-          }
-        }
-      }
-    });
-
   }
 }
 
