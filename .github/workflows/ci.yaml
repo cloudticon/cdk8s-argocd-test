@@ -51,6 +51,7 @@ jobs:
       - run: npm run synth
         working-directory: k8s
 
+      - run: touch k8s/dist/krs
       - uses: EndBug/add-and-commit@v9
         with:
           add: '.'
