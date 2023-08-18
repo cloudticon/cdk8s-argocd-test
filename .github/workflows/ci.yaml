@@ -51,3 +51,11 @@ jobs:
         with:
           add: 'k8s'
           push: true
+
+      - name: Sync ArgoCD Application
+        uses: omegion/argocd-actions@master
+        with:
+          address: "argo.devticon.cloudticon.com"
+#          token: ${{ secrets.ARGOCD_TOKEN }}
+          action: sync
+          appName: "cdk8s-argocd-test"
