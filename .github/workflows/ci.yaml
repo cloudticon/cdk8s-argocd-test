@@ -11,12 +11,18 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
-        with:
-          repository: 'cloudticon/gitops'
-          path: "k8s/dist"
+      - name: Set environment for branch
+        run: |
+          case $GITHUB_REF in
+            "refs/heads/master")
+              echo "ENV=production" >> "$GITHUB_ENV"
+              ;;
+            "refs/heads/development")
+              echo "ENV=development" >> "$GITHUB_ENV"
+              ;;
+          esac
 
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -44,3 +50,4 @@ jobs:
       - run: ./git-push.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ENV: ${{ env.ENV }}
