@@ -52,10 +52,15 @@ jobs:
           add: 'k8s'
           push: true
 
-      - name: Sync ArgoCD Application
-        uses: omegion/argocd-actions@master
-        with:
-          address: "argo.devticon.cloudticon.com"
-          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJrcnM6YXBpS2V5IiwibmJmIjoxNjkyMzU5MjYxLCJpYXQiOjE2OTIzNTkyNjEsImp0aSI6InRlc3QifQ.S8VcMGUSOX4X-9YgUa9r3OBHD9WYgJsWhOHp5ZYNnaE
-          action: sync
-          appName: "cdk8s-argocd-test"
+      - name: Invoke deployment hook
+        uses: distributhor/workflow-webhook@v3
+        env:
+          webhook_url: https://argo.devticon.cloudticon.com/api/webhook
+#
+#      - name: Sync ArgoCD Application
+#        uses: omegion/argocd-actions@master
+#        with:
+#          address: "argo.devticon.cloudticon.com"
+#          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJrcnM6YXBpS2V5IiwibmJmIjoxNjkyMzU5MjYxLCJpYXQiOjE2OTIzNTkyNjEsImp0aSI6InRlc3QifQ.S8VcMGUSOX4X-9YgUa9r3OBHD9WYgJsWhOHp5ZYNnaE
+#          action: sync
+#          appName: "cdk8s-argocd-test"
