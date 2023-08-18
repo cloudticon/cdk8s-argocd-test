@@ -8,7 +8,7 @@ export class MyChart extends Chart {
     const label = { app: 'hello-k8s' };
     new KubeService(this, 'service', {
       spec: {
-        type: 'LoadBalancer',
+        type: 'ClusterIP',
         ports: [ { port: 80, targetPort: IntOrString.fromNumber(8080) } ],
         selector: label
       }
