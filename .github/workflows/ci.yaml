@@ -39,7 +39,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - uses: docker/build-push-action@v4
-        if: github.event.pull_request.merged == 'false'
+        if: github.event.pull_request.merged != 'true'
         with:
           push: true
           tags: registry.cloudticon.com/cdk8s-argocd-test:${{ github.sha }}
