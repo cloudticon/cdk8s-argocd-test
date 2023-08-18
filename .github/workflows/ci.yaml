@@ -27,4 +27,4 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: https://registry.cloudticon.com/cdk8s-argocd-test:$GITHUB_SHA
+          tags: registry.cloudticon.com/cdk8s-argocd-test:$GITHUB_SHA
