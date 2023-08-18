@@ -1,6 +1,7 @@
 import { Construct } from 'constructs';
 import { App, Chart, ChartProps } from 'cdk8s';
 import {IntOrString, KubeDeployment, KubeService} from "cdk8s-plus-25/lib/imports/k8s";
+import {YamlOutputType} from "cdk8s/lib/app";
 
 export class MyChart extends Chart {
   constructor(scope: Construct, id: string, props: ChartProps = { }) {
@@ -81,6 +82,8 @@ export class MyChart extends Chart {
   }
 }
 
-const app = new App();
+const app = new App({
+  yamlOutputType: YamlOutputType.FILE_PER_RESOURCE
+});
 new MyChart(app, 'cdk8s-argocd-test');
 app.synth();
