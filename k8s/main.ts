@@ -29,7 +29,7 @@ export class MyChart extends Chart {
       metadata: {name: "api", annotations: {'kubernetes.io/ingress.class': 'haproxy',}},
 
     });
-    ingress.addHostRule("test-api.devticon.cloudticon.com", "/", IngressBackend.fromService(service))
+    ingress.addHostRule(`test-api-${process.env.ENV}.devticon.cloudticon.com`, "/", IngressBackend.fromService(service))
     ingress.addTls([{hosts: ["test-api.devticon.cloudticon.com"]}])
   }
 }

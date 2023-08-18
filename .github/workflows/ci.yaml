@@ -47,6 +47,7 @@ jobs:
         working-directory: k8s
         env:
           IMAGE: registry.cloudticon.com/cdk8s-argocd-test:${{ github.sha }}
+          ENV: ${{ env.ENV }}
 
       - run: ./git-push.sh
         env:
