@@ -52,11 +52,20 @@ jobs:
         working-directory: k8s
 
       - run: touch k8s/dist/krs
-      - uses: EndBug/add-and-commit@v9
-        with:
-          add: '.'
-          push: true
-          cwd: 'k8s/dist'
+
+      - run: git add .
+        working-directory: k8s/dist
+      - run: git commit -m "test-$(date +%s)"
+        working-directory: k8s/dist
+      - run: git push
+        working-directory: k8s/dist
+#
+
+#    - uses: EndBug/add-and-commit@v9
+#        with:
+#          add: '.'
+#          push: true
+#          cwd: 'k8s/dist'
 
 #      - name: Invoke deployment hook
 #        uses: distributhor/workflow-webhook@v3
