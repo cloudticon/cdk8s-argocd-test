@@ -57,7 +57,9 @@ jobs:
         uses: actions-js/push@master
         with:
           branch: master
+          repository: cloudticon/gitops
           directory: "k8s/dist"
+          empty: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 #
 
