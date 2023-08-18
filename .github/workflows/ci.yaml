@@ -36,8 +36,6 @@ jobs:
         run: npm ci
         working-directory: k8s
 
-      - run: npm run compile
-        working-directory: k8s
       - run: npm run synth
         working-directory: k8s
         env:
