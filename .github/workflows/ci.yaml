@@ -53,12 +53,12 @@ jobs:
 
       - run: touch k8s/dist/krs
 
-      - run: git add .
-        working-directory: k8s/dist
-      - run: git commit -m "test-$(date +%s)"
-        working-directory: k8s/dist
-      - run: git push
-        working-directory: k8s/dist
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          branch: master
+          directory: "k8s/dist"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 #
 
 #    - uses: EndBug/add-and-commit@v9
