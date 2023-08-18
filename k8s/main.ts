@@ -16,6 +16,9 @@ export class MyChart extends Chart {
     });
 
     new KubeDeployment(this, 'deployment', {
+      metadata: {
+        name: "api"
+      },
       spec: {
         replicas: 2,
         selector: {
