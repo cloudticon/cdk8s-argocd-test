@@ -26,7 +26,8 @@ export class MyChart extends Chart {
     });
     const service = deployment.exposeViaService({name: "api"});
     const ingress = new Ingress(this, "ingress", {
-      metadata: {name: "api"}
+      metadata: {name: "api", annotations: {'kubernetes.io/ingress.class': 'haproxy',}},
+
     });
     ingress.addHostRule("test-api.devticon.cloudticon.com", "/", IngressBackend.fromService(service))
     ingress.addTls([{hosts: ["test-api.devticon.cloudticon.com"]}])
