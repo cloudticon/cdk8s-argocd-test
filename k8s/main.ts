@@ -35,6 +35,27 @@ export class MyChart extends Chart {
       }
     });
 
+    new KubeDeployment(this, 'deployment2', {
+      spec: {
+        replicas: 2,
+        selector: {
+          matchLabels: label
+        },
+        template: {
+          metadata: { labels: label },
+          spec: {
+            containers: [
+              {
+                name: 'hello-kubernetes',
+                image: 'paulbouwer/hello-kubernetes:1.7',
+                ports: [ { containerPort: 8080 } ]
+              }
+            ]
+          }
+        }
+      }
+    });
+
   }
 }
 
