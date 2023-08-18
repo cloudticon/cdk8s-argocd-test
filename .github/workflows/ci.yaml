@@ -53,7 +53,7 @@ jobs:
 
       - uses: EndBug/add-and-commit@v9
         with:
-          add: 'k8s'
+          add: '.'
           push: true
           cwd: 'k8s/dist'
 
