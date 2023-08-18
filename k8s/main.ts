@@ -14,7 +14,10 @@ export class MyChart extends Chart {
         {
           name: "api",
           image: process.env.IMAGE!,
-          port: 3000
+          port: 3000,
+          securityContext: {
+            ensureNonRoot: false
+          }
         }
       ]
     });
