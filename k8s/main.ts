@@ -1,12 +1,15 @@
-import { Construct } from 'constructs';
-import { App, Chart, ChartProps } from 'cdk8s';
-import { Deployment} from "cdk8s-plus-25";
+import {Construct} from 'constructs';
+import {App, Chart, ChartProps} from 'cdk8s';
+import {Deployment, Ingress, IngressBackend} from "cdk8s-plus-25";
 import {YamlOutputType} from "cdk8s/lib/app";
 
 export class MyChart extends Chart {
   constructor(scope: Construct, id: string, props: ChartProps = { }) {
     super(scope, id, props);
     const deployment =new Deployment(this, 'api', {
+      metadata: {
+        name: "api"
+      },
       securityContext: {
         ensureNonRoot: false,
       },
@@ -21,10 +24,12 @@ export class MyChart extends Chart {
         }
       ]
     });
-    deployment.exposeViaIngress("/test", {
-
-      // ports: [{port: 3000}]
-    })
+    const service = deployment.exposeViaService({name: "api"});
+    const ingress = new Ingress(this, "ingress", {
+      metadata: {name: "api"}
+    });
+    ingress.addHostRule("test-api.devticon.cloudticon.com", "/", IngressBackend.fromService(service))
+    ingress.addTls([{hosts: ["test-api.devticon.cloudticon.com"]}])
   }
 }
 
