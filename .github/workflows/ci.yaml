@@ -54,13 +54,13 @@ jobs:
       - run: touch k8s/dist/krs
 
       - run: |
-          ls -la
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          git remote remove origin
-          git remote add origin https://$GH_TOKEN@github.com/cloudticon/gitops
-          git add .
-          git commit -m "test"
+          ls -la && \
+          git config --global user.email "you@example.com"  && \
+          git config --global user.name "Your Name"  && \
+          git remote remove origin  && \
+          git remote add origin https://$GH_TOKEN@github.com/cloudticon/gitops  && \
+          git add .  && \
+          git commit -m "test"  && \
           git push
         working-directory: k8s/dist
         env:
