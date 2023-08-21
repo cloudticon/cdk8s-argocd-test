@@ -34,6 +34,7 @@ export class MyChart extends Chart {
   }
 }
 
+
 const app = new App({
   yamlOutputType: YamlOutputType.FILE_PER_RESOURCE
 });
